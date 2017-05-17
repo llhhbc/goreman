@@ -216,10 +216,10 @@ func main() {
 	case "run":
 		if len(cfg.Args) == 3 {
 			cmd, proc := cfg.Args[1], cfg.Args[2]
-			err = run(cmd, proc, cfg.Port)
+			err = run(cmd, proc)
 		} else if len(cfg.Args) == 2 {
 			cmd := cfg.Args[1]
-			err = run(cmd, "", cfg.Port)
+			err = run(cmd, "")
 		} else {
 			usage()
 		}
