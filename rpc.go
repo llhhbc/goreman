@@ -85,8 +85,8 @@ func (r *Goreman) Status(empty string, ret *string) (err error) {
 }
 
 // command: run.
-func run(cmd, proc string, serverPort uint) error {
-	client, err := rpc.Dial("tcp", fmt.Sprintf("127.0.0.1:%d", serverPort))
+func run(cmd, proc string) error {
+	client, err := rpc.Dial("tcp", fmt.Sprintf("127.0.0.1:%d", *port))
 	if err != nil {
 		return err
 	}
@@ -114,10 +114,10 @@ func run(cmd, proc string, serverPort uint) error {
 }
 
 // start rpc server.
-func startServer(listenPort uint) error {
+func startServer() error {
 	gm := new(Goreman)
 	rpc.Register(gm)
-	server, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%d", listenPort))
+	server, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%d", *port))
 	if err != nil {
 		return err
 	}

@@ -61,9 +61,6 @@ func startProc(proc string) error {
 		spawnProc(proc)
 		wg.Done()
 		p.mu.Unlock()
-		if *restartFlg && p.quit {
-			startProc(proc)
-		}
 	}()
 	return nil
 }
